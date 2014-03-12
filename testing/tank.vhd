@@ -49,7 +49,8 @@ signal T2_direction   : std_logic;
 
 signal temp_1 : std_logic_vector (5 downto 0);
 signal activate : std_logic;
-signal reset: std_logic;
+signal reset : std_logic;
+signal press : std_logic;
 
 begin 
 
@@ -57,7 +58,14 @@ keyboard_0 : ps2 port map (keyboard_clk, keyboard_data, clk, reset, scan_code, s
 
 key_press : process(hist0) is
 begin
-  CASE hist0 IS
+  press <= '1';
+end process key_press;
+
+game: process(press,reset,clk) is
+  begin
+    reset <= '1';    
+  if (press='1') then
+    CASE hist0 IS
 			WHEN X"16" =>
 				    T1_speed <= 1;
 			WHEN X"1E" =>
@@ -79,22 +87,16 @@ begin
 			      T2_direction <= NOT T2_direction;  --latch?
 			   end if;
 			WHEN X"66" => --reset button (backspace)
-			      reset <= '0';
+            reset <= '0';
             T1_direction <= '1'; T2_direction  <= '0';
             T1_speed     <= 1;   T2_speed      <= 1;
+            T1_position_x  <= 315;    T2_position_x  <= 315;
+            T1_position_y  <= 470;    T2_position_y  <= 0;
 			WHEN others =>
 			      null;
-	end CASE;
-end process key_press;
-
-game: process(reset,clk) is
-  begin
-  if (rising_edge(clk)) then
-    if (reset='0') then
-        T1_position_x  <= 315;    T2_position_x  <= 315;
-        T1_position_y  <= 470;    T2_position_y  <= 0;
-        reset <= '1';
-    else
+	   end CASE;
+	   
+  elsif (rising_edge(clk)) then
       if (T1_direction='1') then  --right
         if (T1_position_x > 639-T1_speed) then
         
@@ -113,11 +115,10 @@ game: process(reset,clk) is
     
     
     
-    end if;
+
     
     
   end if;
-    
     
     
 end process game;
@@ -125,4 +126,3 @@ end process game;
 
 
 end architecture structural_combinational;
-
