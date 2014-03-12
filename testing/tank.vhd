@@ -33,7 +33,7 @@ end component;
 
 signal scan_code : std_logic_vector(7 downto 0);
 signal scan_readyo : std_logic;
-signal hist3,hist2,hist1,hist0 : std_logic_vector(7 downto 0);
+signal hist3, hist2, hist1, hist0 : std_logic_vector(7 downto 0);
 signal led_seq : std_logic_vector (55 downto 0);
 
 
@@ -53,9 +53,10 @@ signal reset: std_logic;
 
 begin 
 
-keyboard_0 : ps2 port map (keyboard_clk, keyboard_data, clk, reset, scan_code, scan_readyo, hist_3, hist_2, hist_1, hist_0, led_seq);
+keyboard_0 : ps2 port map (keyboard_clk, keyboard_data, clk, reset, scan_code, scan_readyo, hist3, hist2, hist1, hist0, led_seq);
 
 key_press : process(hist0) is
+begin
   CASE hist0 IS
 			WHEN X"16" =>
 				    T1_speed <= 1;
@@ -64,7 +65,9 @@ key_press : process(hist0) is
 			WHEN X"26" =>
 			      T1_speed <= 3;
 			WHEN X"0D" =>
-			      T1_direction <= NOT T1_direction;
+			  if (hist1=X"F0") then
+			      T1_direction <= NOT T1_direction;  --latch?
+			  end if;
 			WHEN X"69" =>
 				    T2_speed <= 1;
 			WHEN X"72" =>
@@ -72,9 +75,13 @@ key_press : process(hist0) is
 			WHEN X"7A" =>
 			      T2_speed <= 3;
 			WHEN X"59" =>
-			      T2_direction <= NOT T2_direction;
-			WHEN X"66" =>
+			   if (hist1=X"F0") then
+			      T2_direction <= NOT T2_direction;  --latch?
+			   end if;
+			WHEN X"66" => --reset button (backspace)
 			      reset <= '0';
+            T1_direction <= '1'; T2_direction  <= '0';
+            T1_speed     <= 1;   T2_speed      <= 1;
 			WHEN others =>
 			      null;
 	end CASE;
@@ -82,16 +89,31 @@ end process key_press;
 
 game: process(reset,clk) is
   begin
-  if (reset='0') then
-    T1_direction   <= '1';    T2_direction   <= '0';
-    T1_speed        <= 1;     T2_speed       <= 1;
-    T1_position_x  <= 315;    T2_position_x  <= 315;
-    T1_position_y  <= 470;    T2_position_y  <= 0;
-    reset <= '1';
-  elsif (rising_edge(clk)) then
-    T1_position_x <= T1_position_x + T1_speed;
-    T2_position_x <= T2_position_x + T2_speed;
+  if (rising_edge(clk)) then
+    if (reset='0') then
+        T1_position_x  <= 315;    T2_position_x  <= 315;
+        T1_position_y  <= 470;    T2_position_y  <= 0;
+        reset <= '1';
+    else
+      if (T1_direction='1') then  --right
+        if (T1_position_x > 639-T1_speed) then
+        
+        
+        T1_position_x  <= T1_position_x + T1_speed;
+        
+      else
+        T1_position_x  <= T1_position_x - T1_speed;
+      end if;
     
+      if (T2_direction='1') then  --right
+        T2_position_x  <= T2_position_x + T2_speed;
+      else
+        T2_position_x  <= T2_position_x - T2_speed;
+      end if;
+    
+    
+    
+    end if;
     
     
   end if;
@@ -103,3 +125,4 @@ end process game;
 
 
 end architecture structural_combinational;
+
