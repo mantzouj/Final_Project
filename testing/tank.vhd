@@ -56,15 +56,17 @@ begin
 
 keyboard_0 : ps2 port map (keyboard_clk, keyboard_data, clk, reset, scan_code, scan_readyo, hist3, hist2, hist1, hist0, led_seq);
 
-key_press : process(hist0) is
+key_press : process(hist0) is --see if key is pressed, in which case something may need to get updated
 begin
   press <= '1';
 end process key_press;
+
 
 game: process(press,reset,clk) is
   begin
     reset <= '1';    
   if (press='1') then
+    press <= '0';
     CASE hist0 IS
 			WHEN X"16" =>
 				    T1_speed <= 1;
@@ -98,19 +100,44 @@ game: process(press,reset,clk) is
 	   
   elsif (rising_edge(clk)) then
       if (T1_direction='1') then  --right
-        if (T1_position_x > 639-T1_speed) then
+        if (T1_position_x > 640-10-T1_speed) then --if going to go past end of screen, invert direction
+          T1_direction <= '0';
+          T1_position_x <= 640-10;
+        else
+          T1_position_x  <= T1_position_x + T1_speed;
+          T1_direction <= '1';
+        end if;
         
-        
-        T1_position_x  <= T1_position_x + T1_speed;
-        
-      else
-        T1_position_x  <= T1_position_x - T1_speed;
+      else --going left
+        if (T1_position_x < T1_speed) then --if going to go past end of screen, invert direction
+          T1_direction <= '1';
+          T1_position_x <= 0;
+        else
+          T1_position_x  <= T1_position_x - T1_speed;
+          T1_direction <= '0';
+        end if;
       end if;
     
+    ------------
+    
+    
       if (T2_direction='1') then  --right
-        T2_position_x  <= T2_position_x + T2_speed;
-      else
-        T2_position_x  <= T2_position_x - T2_speed;
+        if (T2_position_x > 640-10-T2_speed) then --if going to go past end of screen, invert direction
+          T2_direction <= '0';
+          T2_position_x <= 640-10;
+        else
+          T2_position_x  <= T2_position_x + T2_speed;
+          T2_direction <= '1';
+        end if;
+        
+      else --going left
+        if (T2_position_x < T2_speed) then --if going to go past end of screen, invert direction
+          T2_direction <= '1';
+          T2_position_x <= 0;
+        else
+          T2_position_x  <= T2_position_x - T2_speed;
+          T2_direction <= '0';
+        end if;
       end if;
     
     
