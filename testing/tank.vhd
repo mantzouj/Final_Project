@@ -71,6 +71,38 @@ keyboard_0 : ps2 port map (keyboard_clk, keyboard_data, clk, reset, scan_code, s
 key_press : process(hist0) is --see if key is pressed, in which case something may need to get updated
 begin
   press <= '1';
+  
+  
+  --preferred
+  
+  --	if (hist1/=X"F0") then
+--		done <= '0';
+--	elsif (done='1') then
+--		press<='0';
+--	elsif(hist1=X"F0" and done='0') then
+--		press <= '1';
+--		done <= '1';
+--	end if;
+
+  --end preferred
+  
+  
+    --  --press<='1';     --add press to the sensitivity list
+    --  	 --if (press='1' and hist1=X"F0") then
+      	--press <= '0';
+    --   --end if;
+  
+         --	press<='0';
+      	--if (hist1=X"F0" and press='0') then
+      	--	press <= '1';
+      -- end if;
+  
+     --if (press='1') then
+     --press <= '0';
+      --else
+      --press<= '1';
+      --end if;
+  
 end process key_press;
 
 
