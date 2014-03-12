@@ -51,6 +51,12 @@ signal temp_1 : std_logic_vector (5 downto 0);
 signal activate : std_logic;
 signal reset : std_logic;
 signal press : std_logic;
+signal T1_shoots : std_logic;
+signal T2_shoots : std_logic;
+signal T1_bullet_exists : std_logic;
+signal T2_bullet_exists : std_logic;
+signal T1_bullet_x : integer;
+signal T1_bullet_y : integer;
 
 begin 
 
@@ -84,16 +90,32 @@ game: process(press,reset,clk) is
 			      T2_speed <= 2;
 			WHEN X"7A" =>
 			      T2_speed <= 3;
-			WHEN X"59" =>
+			WHEN X"4A" =>
 			   if (hist1=X"F0") then
 			      T2_direction <= NOT T2_direction;  --latch?
 			   end if;
+			WHEN X"29" =>  --T1 shoots
+			   if (T1_shoots='0') then
+			      T1_shoots <= '1';
+			   else
+			      T1_shoots <= '1';
+			   end if;
+			WHEN X"59" =>  --T2 shoots
+			   if (T2_shoots='0') then
+			      T2_shoots <= '1';
+			   else
+			      T2_shoots <= '1';
+			   end if;
 			WHEN X"66" => --reset button (backspace)
             reset <= '0';
-            T1_direction <= '1'; T2_direction  <= '0';
-            T1_speed     <= 1;   T2_speed      <= 1;
-            T1_position_x  <= 315;    T2_position_x  <= 315;
-            T1_position_y  <= 470;    T2_position_y  <= 0;
+            T1_direction   <= '1';   T2_direction  <= '0';
+            T1_speed       <= 1;     T2_speed      <= 1;
+            T1_position_x  <= 315;   T2_position_x <= 315;
+            T1_position_y  <= 470;   T2_position_y <= 0;
+            T1_shoots      <= '0';   T2_shoots     <= '0';
+            T1_bullet_exists <= '0'; T2_bullet_exists <= '0';
+            T1_bullet_x      <= 320;
+            T1_bullet_y      <= 470-5;
 			WHEN others =>
 			      null;
 	   end CASE;
@@ -120,7 +142,6 @@ game: process(press,reset,clk) is
     
     ------------
     
-    
       if (T2_direction='1') then  --right
         if (T2_position_x > 640-10-T2_speed) then --if going to go past end of screen, invert direction
           T2_direction <= '0';
@@ -140,7 +161,31 @@ game: process(press,reset,clk) is
         end if;
       end if;
     
-    
+      
+      T1_shoots <= '0';
+            
+      if(T1_bullet_exists = '1') then  -- if the bullet exists
+        if(T1_bullet_x<10) then
+          T1_bullet_exists <= '0';
+          T1_bullet_x <= T1_position_x;   --re-hide/delete bullet
+          T1_bullet_y <= 470-5;
+        else
+          T1_bullet_y <= T1_bullet_y - 10;
+        end if;
+        
+      elsif(T1_shoots = '0' and T1_bullet_exists = '0') then --if no command to shoot and bullet does not exist, hide bullet in tank
+        T1_bullet_x <= T1_position_x; ---might need to get updated to get new position
+      end if;
+      
+      
+      
+      
+      if (T1_shoots = '1' and T1_bullet_exists='0') then  --if the bullet does not exist and there is a command to shoot
+            T1_bullet_exists <= '1';
+            T1_bullet_x <= T1_position_x;
+            T1_bullet_y <= T1_bullet_y - 10;
+      end if;
+        
     
 
     
