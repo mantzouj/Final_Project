@@ -11,8 +11,8 @@ entity tank is
 
  
  --Outputs 
- dummy1 : out std_logic_vector (5 downto 0); 
- dummy2 : out std_logic
+			VGA_RED, VGA_GREEN, VGA_BLUE 					: out std_logic_vector(9 downto 0); 
+			HORIZ_SYNC, VERT_SYNC, VGA_BLANK, VGA_CLK		: out std_logic
  ); 
 end entity tank; 
 
@@ -30,6 +30,19 @@ component ps2 is
 			hist0 : out std_logic_vector(7 downto 0);
 			led_seq: out std_logic_vector (55 downto 0)
 		);  
+end component;
+
+component VGA_top_level is
+	port(
+	    T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y : in integer;
+			CLOCK_50 										: in std_logic;
+			RESET_N											: in std_logic;
+	
+			--VGA 
+			VGA_RED, VGA_GREEN, VGA_BLUE 					: out std_logic_vector(9 downto 0); 
+			HORIZ_SYNC, VERT_SYNC, VGA_BLANK, VGA_CLK		: out std_logic
+
+		);
 end component;
 
 signal scan_code : std_logic_vector(7 downto 0);
@@ -50,6 +63,7 @@ signal T2_direction   : std_logic;
 signal winner         : std_logic;
 signal game_over      : std_logic;
 signal tie            : std_logic;
+signal done           : std_logic;
 
 signal temp_1 : std_logic_vector (5 downto 0);
 signal activate : std_logic;
@@ -67,22 +81,23 @@ signal T2_bullet_y : integer;
 begin 
 
 keyboard_0 : ps2 port map (keyboard_clk, keyboard_data, clk, reset, scan_code, scan_readyo, hist3, hist2, hist1, hist0, led_seq);
+vga_0 : VGA_top_level port map (T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y, clk, reset, VGA_RED, VGA_GREEN, VGA_BLUE, HORIZ_SYNC, VERT_SYNC, VGA_BLANK, VGA_CLK);
 
-key_press : process(hist0) is --see if key is pressed, in which case something may need to get updated
+key_press : process(hist0,press,done,hist1) is --see if key is pressed, in which case something may need to get updated
 begin
-  press <= '1';
+  --press <= '1';
   
   
   --preferred
   
-  --	if (hist1/=X"F0") then
---		done <= '0';
---	elsif (done='1') then
---		press<='0';
---	elsif(hist1=X"F0" and done='0') then
---		press <= '1';
---		done <= '1';
---	end if;
+ 	if (hist1/=X"F0") then
+		done <= '0';
+	elsif (done='1') then
+		press<='0';
+	elsif(hist1=X"F0" and done='0') then
+		press <= '1';
+		done <= '1';
+	end if;
 
   --end preferred
   
@@ -110,7 +125,7 @@ game: process(press,reset,clk) is
   begin
     reset <= '1';    
   if (press='1') then
-    press <= '0';
+    --press <= '0';
     CASE hist0 IS
 			WHEN X"16" =>
 				    T1_speed <= 1;
