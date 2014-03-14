@@ -6,8 +6,8 @@ entity VGA_top_level is
 	port(
 	    T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y : in integer;
 			CLOCK_50 										: in std_logic;
-			RESET_N											: in std_logic;
-	
+			RESET_N									  : in std_logic;
+	    game_over, winner   : in std_logic;
 			--VGA 
 			VGA_RED, VGA_GREEN, VGA_BLUE 					: out std_logic_vector(9 downto 0); 
 			HORIZ_SYNC, VERT_SYNC, VGA_BLANK, VGA_CLK		: out std_logic
@@ -20,7 +20,7 @@ architecture structural of VGA_top_level is
 component pixelGenerator is
 	port(
 	  	    T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y : in integer;
-			clk, ROM_clk, rst_n, video_on, eof 				: in std_logic;
+			clk, ROM_clk, rst_n, video_on, eof, game_over, winner 				: in std_logic;
 			pixel_row, pixel_column						    : in std_logic_vector(9 downto 0);
 			red_out, green_out, blue_out					: out std_logic_vector(9 downto 0)
 		);
@@ -47,7 +47,7 @@ begin
 --------------------------------------------------------------------------------------------
 
 	videoGen : pixelGenerator
-		port map(T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y, CLOCK_50, VGA_clk_int, RESET_N, video_on_int, eof, pixel_row_int, pixel_column_int, VGA_RED, VGA_GREEN, VGA_BLUE);
+		port map(T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y, CLOCK_50, VGA_clk_int, RESET_N, video_on_int, eof, game_over, winner, pixel_row_int, pixel_column_int, VGA_RED, VGA_GREEN, VGA_BLUE);
 
 --------------------------------------------------------------------------------------------
 --This section should not be modified in your design.  This section handles the VGA timing signals

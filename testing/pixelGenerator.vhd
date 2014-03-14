@@ -7,7 +7,7 @@ use WORK.tank_const.all;
 entity pixelGenerator is
 	port(
 	    T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y : in integer;
-			clk, ROM_clk, rst_n, video_on, eof 				: in std_logic;
+			clk, ROM_clk, rst_n, video_on, eof, game_over, winner 				: in std_logic;
 			pixel_row, pixel_column						    : in std_logic_vector(9 downto 0);
 			red_out, green_out, blue_out					: out std_logic_vector(9 downto 0)
 		);
@@ -56,38 +56,41 @@ begin
 
 --------------------------------------------------------------------------------------------	
 
-	pixelDraw : process(clk, rst_n) is
+	pixelDraw : process(clk, winner, game_over) is
 	
 	begin
-		colorAddress <= color_white;	
-		if (rst_n = '0') then
-			if ((pixel_column_int >= T1_position_x) and (pixel_column_int < T1_position_x+T_size) and (pixel_row_int >= T1_position_y) and (pixel_row_int < T1_position_y+T_size)) then
+		colorAddress <= color_white;
+		if (game_over = '0') then
+			if ((pixel_column_int >= T1_position_x) and (pixel_column_int < T1_position_x+T_SIZE) and (pixel_row_int >= T1_position_y) and (pixel_row_int < T1_position_y+T_SIZE)) then
 				colorAddress <= color_blue;
-			elsif ((pixel_column_int >= T2_position_x) and (pixel_column_int < T2_position_x+T_size) and (pixel_row_int >= T2_position_y) and (pixel_row_int < T2_position_y+T_size)) then
-				colorAddress <= color_red;---------------up to here, 2 tanks are initialized on screen
-			elsif (pixel_row_int < 200 and pixel_column_int >= 50) then
+			elsif ((pixel_column_int >= T2_position_x) and (pixel_column_int < T2_position_x+T_SIZE) and (pixel_row_int >= T2_position_y) and (pixel_row_int < T2_position_y+T_SIZE)) then
 				colorAddress <= color_red;
-			elsif (pixel_row_int >= 200 and pixel_column_int >= 50) then
-				colorAddress <= color_blue;
+			elsif ((pixel_column_int >= T1_bullet_x) and (pixel_column_int < T1_bullet_x+C_WIDTH) and (pixel_row_int >= T1_bullet_y) and (pixel_row_int < T1_bullet_y+C_WIDTH)) then
+			  colorAddress <= color_blue;
+			elsif ((pixel_column_int >= T2_bullet_x) and (pixel_column_int < T2_bullet_x+C_WIDTH) and (pixel_row_int >= T2_bullet_y) and (pixel_row_int < T2_bullet_y+C_WIDTH)) then
+			  colorAddress <= color_red;
 			else
+			---------------up to here, 2 tanks are initialized on screen
 			end if;  
 		
-		elsif (rising_edge(clk)) then
+		else--(rising_edge(clk)) then
 		--(0,0) is top left
 			--colorAddress <= color_white;
-			
-			if (pixel_row_int < 200 and pixel_column_int < 50) then
-				colorAddress <= color_green;
-			elsif (pixel_row_int >= 200 and pixel_column_int < 50) then
-				colorAddress <= color_yellow;
-			elsif (pixel_row_int < 200 and pixel_column_int >= 50) then
-				colorAddress <= color_red;
-			elsif (pixel_row_int >= 200 and pixel_column_int >= 50) then
-				colorAddress <= color_blue;
+			if (winner='0') then --T1 wins and remains on screen
+         if ((pixel_column_int >= T1_position_x) and (pixel_column_int < T1_position_x+T_SIZE) and (pixel_row_int >= T1_position_y) and (pixel_row_int < T1_position_y+T_SIZE)) then
+				    colorAddress <= color_blue;
+			   elsif ((pixel_column_int >= T1_bullet_x) and (pixel_column_int < T1_bullet_x+C_WIDTH) and (pixel_row_int >= T1_bullet_y) and (pixel_row_int < T1_bullet_y+C_WIDTH)) then
+			      colorAddress <= color_blue;
+			   else
+			   end if;
 			else
-				colorAddress <= color_white;
+			   if ((pixel_column_int >= T2_position_x) and (pixel_column_int < T2_position_x+T_SIZE) and (pixel_row_int >= T2_position_y) and (pixel_row_int < T2_position_y+T_SIZE)) then
+				    colorAddress <= color_red;
+			   elsif ((pixel_column_int >= T2_bullet_x) and (pixel_column_int < T2_bullet_x+C_WIDTH) and (pixel_row_int >= T2_bullet_y) and (pixel_row_int < T2_bullet_y+C_WIDTH)) then
+			     colorAddress <= color_red;
+			   else
+			   end if;  			   
 			end if;
-			
 		end if;
 		
 	end process pixelDraw;	
