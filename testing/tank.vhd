@@ -37,6 +37,7 @@ component VGA_top_level is
 	    T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y : in integer;
 			CLOCK_50 										: in std_logic;
 			RESET_N											: in std_logic;
+			game_over, winner :in std_logic;
 	
 			--VGA 
 			VGA_RED, VGA_GREEN, VGA_BLUE 					: out std_logic_vector(9 downto 0); 
@@ -45,6 +46,12 @@ component VGA_top_level is
 		);
 end component;
 
+component slow_clock IS
+	PORT(clock_50MHz, reset : IN STD_LOGIC;
+			clock : OUT STD_LOGIC);
+END component slow_clock;
+
+signal slow_clk: std_logic;
 signal scan_code : std_logic_vector(7 downto 0);
 signal scan_readyo : std_logic;
 signal hist3, hist2, hist1, hist0 : std_logic_vector(7 downto 0);
@@ -81,12 +88,12 @@ signal T2_bullet_y : integer;
 begin 
 
 keyboard_0 : ps2 port map (keyboard_clk, keyboard_data, clk, reset, scan_code, scan_readyo, hist3, hist2, hist1, hist0, led_seq);
-vga_0 : VGA_top_level port map (T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y, clk, reset, VGA_RED, VGA_GREEN, VGA_BLUE, HORIZ_SYNC, VERT_SYNC, VGA_BLANK, VGA_CLK);
+vga_0 : VGA_top_level port map (T1_position_x, T1_position_y, T1_bullet_x, T1_bullet_y, T2_position_x, T2_position_y, T2_bullet_x, T2_bullet_y, clk, reset, game_over, winner, VGA_RED, VGA_GREEN, VGA_BLUE, HORIZ_SYNC, VERT_SYNC, VGA_BLANK, VGA_CLK);
+slow_clock_map: slow_clock port map(clock_50MHz=> clk, reset=>reset, clock=>slow_clk);
 
 key_press : process(hist0,press,done,hist1) is --see if key is pressed, in which case something may need to get updated
 begin
   --press <= '1';
-  
   
   --preferred
   
@@ -121,9 +128,11 @@ begin
 end process key_press;
 
 
-game: process(press,reset,clk) is
+game: process(press,reset,slow_clk) is
   begin
-    reset <= '1';    
+   --asynchrounous 
+  reset <= '1';    
+  
   if (press='1') then
     --press <= '0';
     CASE hist0 IS
@@ -165,8 +174,9 @@ game: process(press,reset,clk) is
 			      null;
 	   end CASE;
 	   
-  elsif (rising_edge(clk)) then
-    
+  elsif (rising_edge(slow_clk)) then
+  --synchronous- change states
+     
     --Control T1-----------------------------------------------------------    
     
       if (T1_direction='1') then  --right
@@ -273,6 +283,9 @@ game: process(press,reset,clk) is
       end if;    
     
     end if;
+    
+    
+    
     
     
     
