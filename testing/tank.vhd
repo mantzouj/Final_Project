@@ -9,10 +9,12 @@ entity tank is
  --Inputs 
  keyboard_clk, keyboard_data, clk : in std_logic; 
 
+
  
  --Outputs 
 			VGA_RED, VGA_GREEN, VGA_BLUE 					: out std_logic_vector(9 downto 0); 
-			HORIZ_SYNC, VERT_SYNC, VGA_BLANK, VGA_CLK		: out std_logic
+			HORIZ_SYNC, VERT_SYNC, VGA_BLANK, VGA_CLK		: out std_logic;
+			led_seq: out std_logic_vector (55 downto 0)
  ); 
 end entity tank; 
 
@@ -55,7 +57,6 @@ signal slow_clk: std_logic;
 signal scan_code : std_logic_vector(7 downto 0);
 signal scan_readyo : std_logic;
 signal hist3, hist2, hist1, hist0 : std_logic_vector(7 downto 0);
-signal led_seq : std_logic_vector (55 downto 0);
 
 
 
