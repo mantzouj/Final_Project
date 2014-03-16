@@ -1,0 +1,897 @@
+Analysis & Synthesis report for tank
+Sun Mar 16 00:43:15 2014
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis IP Cores Summary
+ 10. State Machine - |tank|de2lcd:LCDscreen|next_command
+ 11. State Machine - |tank|de2lcd:LCDscreen|state
+ 12. Registers Removed During Synthesis
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 17. Source assignments for VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component|altsyncram_pv71:auto_generated
+ 18. Parameter Settings for User Entity Instance: VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component
+ 19. altsyncram Parameter Settings by Entity Instance
+ 20. Port Connectivity Checks: "leddcd:conv3"
+ 21. Port Connectivity Checks: "leddcd:conv2"
+ 22. Port Connectivity Checks: "VGA_top_level:vga_0"
+ 23. Port Connectivity Checks: "ps2:keyboard_0"
+ 24. Elapsed Time Per Partition
+ 25. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sun Mar 16 00:43:15 2014           ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; tank                                            ;
+; Top-level Entity Name              ; tank                                            ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 1,914                                           ;
+;     Total combinational functions  ; 1,844                                           ;
+;     Dedicated logic registers      ; 504                                             ;
+; Total registers                    ; 504                                             ;
+; Total pins                         ; 108                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 240                                             ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; tank               ; tank               ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                    ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                ; Library ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------+---------+
+; testing/de2lcd.vhd               ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/de2lcd.vhd         ;         ;
+; testing/tank.vhd                 ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/tank.vhd           ;         ;
+; testing/VGA_top_level.vhd        ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/VGA_top_level.vhd  ;         ;
+; testing/vga_sync.vhd             ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/vga_sync.vhd       ;         ;
+; testing/tank_const.vhd           ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/tank_const.vhd     ;         ;
+; testing/slow_clock.vhd           ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/slow_clock.vhd     ;         ;
+; testing/ps2.vhd                  ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/ps2.vhd            ;         ;
+; testing/pixelGenerator.vhd       ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/pixelGenerator.vhd ;         ;
+; testing/oneshot.vhd              ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/oneshot.vhd        ;         ;
+; testing/leddcd.vhd               ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/leddcd.vhd         ;         ;
+; testing/keyboard.vhd             ; yes             ; User VHDL File               ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/keyboard.vhd       ;         ;
+; testing/colorROM.vhd             ; yes             ; User Wizard-Generated File   ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/colorROM.vhd       ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf            ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc     ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc               ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc            ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc            ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc             ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc                ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc                ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc              ;         ;
+; db/altsyncram_pv71.tdf           ; yes             ; Auto-Generated Megafunction  ; C:/Users/mantzouj/Documents/GitHub/Final_Project/db/altsyncram_pv71.tdf     ;         ;
++----------------------------------+-----------------+------------------------------+-----------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimated Total logic elements              ; 1,914 ;
+;                                             ;       ;
+; Total combinational functions               ; 1844  ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 598   ;
+;     -- 3 input functions                    ; 501   ;
+;     -- <=2 input functions                  ; 745   ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 865   ;
+;     -- arithmetic mode                      ; 979   ;
+;                                             ;       ;
+; Total registers                             ; 504   ;
+;     -- Dedicated logic registers            ; 504   ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 108   ;
+; Total memory bits                           ; 240   ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
+; Maximum fan-out node                        ; init  ;
+; Maximum fan-out                             ; 310   ;
+; Total fan-out                               ; 7073  ;
+; Average fan-out                             ; 2.85  ;
++---------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                           ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                      ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                              ; Library Name ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |tank                                           ; 1844 (964)        ; 504 (291)    ; 240         ; 0            ; 0       ; 0         ; 108  ; 0            ; |tank                                                                                                                            ; work         ;
+;    |VGA_top_level:vga_0|                        ; 642 (0)           ; 46 (0)       ; 240         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|VGA_top_level:vga_0                                                                                                        ; work         ;
+;       |VGA_SYNC:videoSync|                      ; 58 (58)           ; 46 (46)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|VGA_top_level:vga_0|VGA_SYNC:videoSync                                                                                     ; work         ;
+;       |pixelGenerator:videoGen|                 ; 584 (584)         ; 0 (0)        ; 240         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|VGA_top_level:vga_0|pixelGenerator:videoGen                                                                                ; work         ;
+;          |colorROM:colors|                      ; 0 (0)             ; 0 (0)        ; 240         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors                                                                ; work         ;
+;             |altsyncram:altsyncram_component|   ; 0 (0)             ; 0 (0)        ; 240         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component                                ; work         ;
+;                |altsyncram_pv71:auto_generated| ; 0 (0)             ; 0 (0)        ; 240         ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component|altsyncram_pv71:auto_generated ; work         ;
+;    |de2lcd:LCDscreen|                           ; 134 (134)         ; 82 (82)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|de2lcd:LCDscreen                                                                                                           ; work         ;
+;    |leddcd:conv0|                               ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|leddcd:conv0                                                                                                               ; work         ;
+;    |leddcd:conv1|                               ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|leddcd:conv1                                                                                                               ; work         ;
+;    |ps2:keyboard_0|                             ; 44 (0)            ; 52 (16)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|ps2:keyboard_0                                                                                                             ; work         ;
+;       |keyboard:u1|                             ; 14 (14)           ; 34 (34)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|ps2:keyboard_0|keyboard:u1                                                                                                 ; work         ;
+;       |leddcd:l1|                               ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|ps2:keyboard_0|leddcd:l1                                                                                                   ; work         ;
+;       |leddcd:l2|                               ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|ps2:keyboard_0|leddcd:l2                                                                                                   ; work         ;
+;       |leddcd:l3|                               ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|ps2:keyboard_0|leddcd:l3                                                                                                   ; work         ;
+;       |leddcd:l4|                               ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|ps2:keyboard_0|leddcd:l4                                                                                                   ; work         ;
+;       |oneshot:pulser|                          ; 2 (2)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|ps2:keyboard_0|oneshot:pulser                                                                                              ; work         ;
+;    |slow_clock:slow_clock_map|                  ; 46 (46)           ; 33 (33)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |tank|slow_clock:slow_clock_map                                                                                                  ; work         ;
++-------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                      ;
++---------------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+--------------+
+; Name                                                                                                                                  ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF          ;
++---------------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+--------------+
+; VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component|altsyncram_pv71:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 8            ; 30           ; --           ; --           ; 240  ; colorROM.mif ;
++---------------------------------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+--------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                                                                                     ;
++--------+--------------+---------+--------------+--------------+-------------------------------------------------------------------+-----------------------------------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                                   ; IP Include File                                                       ;
++--------+--------------+---------+--------------+--------------+-------------------------------------------------------------------+-----------------------------------------------------------------------+
+; Altera ; ROM: 1-PORT  ; N/A     ; N/A          ; N/A          ; |tank|VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors ; C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/colorROM.vhd ;
++--------+--------------+---------+--------------+--------------+-------------------------------------------------------------------+-----------------------------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |tank|de2lcd:LCDscreen|next_command                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+-----------------------+--------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+; Name                       ; next_command.DISPLAY_CLEAR ; next_command.DISPLAY_OFF ; next_command.RESET3 ; next_command.HOLD ; next_command.RESET1 ; next_command.TOGGLE_E ; next_command.RETURN_HOME ; next_command.WRITE_CHAR16 ; next_command.WRITE_CHAR15 ; next_command.WRITE_CHAR14 ; next_command.WRITE_CHAR13 ; next_command.WRITE_CHAR12 ; next_command.WRITE_CHAR11 ; next_command.WRITE_CHAR10 ; next_command.WRITE_CHAR9 ; next_command.WRITE_CHAR8 ; next_command.WRITE_CHAR7 ; next_command.WRITE_CHAR6 ; next_command.WRITE_CHAR5 ; next_command.WRITE_CHAR4 ; next_command.WRITE_CHAR3 ; next_command.WRITE_CHAR2 ; next_command.WRITE_CHAR1 ; next_command.MODE_SET ; next_command.DISPLAY_ON ; next_command.FUNC_SET ; next_command.RESET2 ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+-----------------------+--------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+; next_command.RESET2        ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 0                   ;
+; next_command.FUNC_SET      ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 1                     ; 1                   ;
+; next_command.DISPLAY_ON    ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 1                       ; 0                     ; 1                   ;
+; next_command.MODE_SET      ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 1                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR1   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 1                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR2   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 1                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR3   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 1                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR4   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 1                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR5   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 1                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR6   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 1                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR7   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 1                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR8   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 1                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR9   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 1                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR10  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 1                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR11  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 1                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR12  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 1                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR13  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 1                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR14  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 1                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR15  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 1                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.WRITE_CHAR16  ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 1                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.RETURN_HOME   ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 1                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.TOGGLE_E      ; 0                          ; 0                        ; 0                   ; 0                 ; 0                   ; 1                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.RESET1        ; 0                          ; 0                        ; 0                   ; 0                 ; 1                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.HOLD          ; 0                          ; 0                        ; 0                   ; 1                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.RESET3        ; 0                          ; 0                        ; 1                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.DISPLAY_OFF   ; 0                          ; 1                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
+; next_command.DISPLAY_CLEAR ; 1                          ; 0                        ; 0                   ; 0                 ; 0                   ; 0                     ; 0                        ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                         ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                        ; 0                     ; 0                       ; 0                     ; 1                   ;
++----------------------------+----------------------------+--------------------------+---------------------+-------------------+---------------------+-----------------------+--------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+--------------------------+-----------------------+-------------------------+-----------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |tank|de2lcd:LCDscreen|state                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+----------------+-------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+----------------+------------------+----------------+--------------+
+; Name                ; state.DISPLAY_CLEAR ; state.DISPLAY_OFF ; state.RESET3 ; state.RESET2 ; state.HOLD ; state.TOGGLE_E ; state.RETURN_HOME ; state.WRITE_CHAR16 ; state.WRITE_CHAR15 ; state.WRITE_CHAR14 ; state.WRITE_CHAR13 ; state.WRITE_CHAR12 ; state.WRITE_CHAR11 ; state.WRITE_CHAR10 ; state.WRITE_CHAR9 ; state.WRITE_CHAR8 ; state.WRITE_CHAR7 ; state.WRITE_CHAR6 ; state.WRITE_CHAR5 ; state.WRITE_CHAR4 ; state.WRITE_CHAR3 ; state.WRITE_CHAR2 ; state.WRITE_CHAR1 ; state.MODE_SET ; state.DISPLAY_ON ; state.FUNC_SET ; state.RESET1 ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+----------------+-------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+----------------+------------------+----------------+--------------+
+; state.RESET1        ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 0            ;
+; state.FUNC_SET      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 1              ; 1            ;
+; state.DISPLAY_ON    ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 1                ; 0              ; 1            ;
+; state.MODE_SET      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR1   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR2   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR3   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR4   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR5   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR6   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR7   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR8   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR9   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR10  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR11  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR12  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR13  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR14  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR15  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.WRITE_CHAR16  ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.RETURN_HOME   ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 1                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.TOGGLE_E      ; 0                   ; 0                 ; 0            ; 0            ; 0          ; 1              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.HOLD          ; 0                   ; 0                 ; 0            ; 0            ; 1          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.RESET2        ; 0                   ; 0                 ; 0            ; 1            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.RESET3        ; 0                   ; 0                 ; 1            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.DISPLAY_OFF   ; 0                   ; 1                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
+; state.DISPLAY_CLEAR ; 1                   ; 0                 ; 0            ; 0            ; 0          ; 0              ; 0                 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0                 ; 0              ; 0                ; 0              ; 1            ;
++---------------------+---------------------+-------------------+--------------+--------------+------------+----------------+-------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+----------------+------------------+----------------+--------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                   ;
++-----------------------------------------------------+------------------------------------------------+
+; Register name                                       ; Reason for Removal                             ;
++-----------------------------------------------------+------------------------------------------------+
+; de2lcd:LCDscreen|LCD_RW                             ; Stuck at GND due to stuck port data_in         ;
+; T1_bullet_y[2]                                      ; Stuck at GND due to stuck port data_in         ;
+; T1_bullet_y[0]                                      ; Stuck at VCC due to stuck port data_in         ;
+; T2_bullet_y[1]                                      ; Stuck at GND due to stuck port data_in         ;
+; T2_bullet_y[0]                                      ; Stuck at VCC due to stuck port data_in         ;
+; T2_speed[3..9,11..30]                               ; Merged with T2_speed[10]                       ;
+; T1_speed[3..9,11..30]                               ; Merged with T1_speed[10]                       ;
+; T1_speed[10]                                        ; Stuck at GND due to stuck port data_in         ;
+; T2_speed[10]                                        ; Stuck at GND due to stuck port data_in         ;
+; VGA_top_level:vga_0|VGA_SYNC:videoSync|pixel_row[9] ; Stuck at GND due to stuck port data_in         ;
+; de2lcd:LCDscreen|next_command.RESET1                ; Merged with de2lcd:LCDscreen|next_command.HOLD ;
+; de2lcd:LCDscreen|next_command.TOGGLE_E              ; Merged with de2lcd:LCDscreen|next_command.HOLD ;
+; de2lcd:LCDscreen|next_command.HOLD                  ; Stuck at GND due to stuck port data_in         ;
+; Total Number of Removed Registers = 65              ;                                                ;
++-----------------------------------------------------+------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                  ;
++-------------------------+---------------------------+----------------------------------------+
+; Register name           ; Reason for Removal        ; Registers Removed due to This Register ;
++-------------------------+---------------------------+----------------------------------------+
+; de2lcd:LCDscreen|LCD_RW ; Stuck at GND              ; T1_speed[10]                           ;
+;                         ; due to stuck port data_in ;                                        ;
++-------------------------+---------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 504   ;
+; Number of registers using Synchronous Clear  ; 20    ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 305   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 196   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; \game:T2_pos_x[8]                       ; 8       ;
+; \game:T2_pos_x[5]                       ; 10      ;
+; \game:T2_pos_x[4]                       ; 10      ;
+; \game:T2_pos_x[0]                       ; 9       ;
+; \game:T1_pos_x[8]                       ; 8       ;
+; \game:T1_pos_x[5]                       ; 12      ;
+; \game:T1_pos_x[4]                       ; 9       ;
+; \game:T1_pos_x[0]                       ; 9       ;
+; T2_bullet_x[8]                          ; 4       ;
+; T2_bullet_x[5]                          ; 4       ;
+; T2_bullet_x[4]                          ; 4       ;
+; T2_bullet_x[3]                          ; 4       ;
+; T2_bullet_x[2]                          ; 4       ;
+; T2_bullet_x[1]                          ; 4       ;
+; T2_bullet_y[5]                          ; 5       ;
+; T2_bullet_y[2]                          ; 5       ;
+; T2_bullet_y[3]                          ; 6       ;
+; T1_bullet_y[8]                          ; 4       ;
+; T1_bullet_y[7]                          ; 4       ;
+; T1_bullet_y[5]                          ; 4       ;
+; T1_bullet_y[4]                          ; 4       ;
+; T1_bullet_y[1]                          ; 4       ;
+; T1_bullet_x[8]                          ; 4       ;
+; T1_bullet_x[5]                          ; 4       ;
+; T1_bullet_x[4]                          ; 4       ;
+; T1_bullet_x[3]                          ; 4       ;
+; T1_bullet_x[2]                          ; 4       ;
+; T1_bullet_x[1]                          ; 4       ;
+; slow_clock:slow_clock_map|temp_clock    ; 276     ;
+; T1_speed[0]                             ; 5       ;
+; T1_speed[31]                            ; 8       ;
+; \game:T1_direction                      ; 32      ;
+; T2_speed[0]                             ; 5       ;
+; T2_speed[31]                            ; 5       ;
+; Total number of inverted registers = 34 ;         ;
++-----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
+; 3:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |tank|T2_bullet_x[17]                                   ;
+; 3:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |tank|T1_bullet_x[19]                                   ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |tank|winner                                            ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |tank|VGA_top_level:vga_0|VGA_SYNC:videoSync|v_count[8] ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |tank|de2lcd:LCDscreen|CLK_COUNT_400HZ[0]               ;
+; 4:1                ; 26 bits   ; 52 LEs        ; 26 LEs               ; 26 LEs                 ; Yes        ; |tank|T2_bullet_y[9]                                    ;
+; 4:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |tank|T1_bullet_y[21]                                   ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; Yes        ; |tank|T2_speed[10]                                      ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |tank|T1_speed[10]                                      ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |tank|T2_bullet_x[8]                                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |tank|T1_bullet_x[31]                                   ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |tank|T2_bullet_y[5]                                    ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |tank|T1_bullet_y[31]                                   ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |tank|T2_speed[0]                                       ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |tank|T1_speed[31]                                      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |tank|T2_score_int                                      ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |tank|T1_score_int                                      ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |tank|T1_pos_x                                          ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |tank|T2_pos_x                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component|altsyncram_pv71:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                  ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                   ;
++---------------------------------+--------------------+------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+------------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                         ;
++------------------------------------+----------------------+------------------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                      ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                                   ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                                 ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                                 ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                               ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                      ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                                                                      ;
+; WIDTH_A                            ; 30                   ; Signed Integer                                                               ;
+; WIDTHAD_A                          ; 3                    ; Signed Integer                                                               ;
+; NUMWORDS_A                         ; 8                    ; Signed Integer                                                               ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                      ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                      ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                      ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                      ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                      ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                      ;
+; WIDTH_B                            ; 1                    ; Untyped                                                                      ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                                                      ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                                                      ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                      ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                      ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                      ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                                                      ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                      ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                      ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                      ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                      ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                      ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                      ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                      ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                      ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                                               ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                                      ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                                      ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                                      ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                                      ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                      ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                      ;
+; INIT_FILE                          ; colorROM.mif         ; Untyped                                                                      ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                      ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                                      ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                                                      ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                      ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                                                      ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                      ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                      ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                      ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                                      ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                      ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                      ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                                                                      ;
+; CBXI_PARAMETER                     ; altsyncram_pv71      ; Untyped                                                                      ;
++------------------------------------+----------------------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                                        ;
++-------------------------------------------+---------------------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                                       ;
++-------------------------------------------+---------------------------------------------------------------------------------------------+
+; Number of entity instances                ; 1                                                                                           ;
+; Entity Instance                           ; VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; ROM                                                                                         ;
+;     -- WIDTH_A                            ; 30                                                                                          ;
+;     -- NUMWORDS_A                         ; 8                                                                                           ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                                ;
+;     -- WIDTH_B                            ; 1                                                                                           ;
+;     -- NUMWORDS_B                         ; 1                                                                                           ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                                      ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                                ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                                        ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                                   ;
++-------------------------------------------+---------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------+
+; Port Connectivity Checks: "leddcd:conv3"  ;
++---------+-------+----------+--------------+
+; Port    ; Type  ; Severity ; Details      ;
++---------+-------+----------+--------------+
+; data_in ; Input ; Info     ; Stuck at GND ;
++---------+-------+----------+--------------+
+
+
++-------------------------------------------+
+; Port Connectivity Checks: "leddcd:conv2"  ;
++---------+-------+----------+--------------+
+; Port    ; Type  ; Severity ; Details      ;
++---------+-------+----------+--------------+
+; data_in ; Input ; Info     ; Stuck at GND ;
++---------+-------+----------+--------------+
+
+
++--------------------------------------------------------+
+; Port Connectivity Checks: "VGA_top_level:vga_0"        ;
++----------------------+-------+----------+--------------+
+; Port                 ; Type  ; Severity ; Details      ;
++----------------------+-------+----------+--------------+
+; t1_position_y[8..6]  ; Input ; Info     ; Stuck at VCC ;
+; t1_position_y[31..9] ; Input ; Info     ; Stuck at GND ;
+; t1_position_y[5..2]  ; Input ; Info     ; Stuck at GND ;
+; t1_position_y[1]     ; Input ; Info     ; Stuck at VCC ;
+; t1_position_y[0]     ; Input ; Info     ; Stuck at GND ;
+; t2_position_y        ; Input ; Info     ; Stuck at GND ;
++----------------------+-------+----------+--------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ps2:keyboard_0"                                                                                ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; reset           ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; scan_code       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; scan_readyo     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; hist3           ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; hist2           ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; led_seq[55..28] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:04     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Sun Mar 16 00:43:08 2014
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off tank -c tank
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file testing/de2lcd.vhd
+    Info (12022): Found design unit 1: de2lcd-a
+    Info (12023): Found entity 1: de2lcd
+Info (12021): Found 2 design units, including 1 entities, in source file testing/tank.vhd
+    Info (12022): Found design unit 1: tank-structural_combinational
+    Info (12023): Found entity 1: tank
+Info (12021): Found 2 design units, including 1 entities, in source file testing/vga_top_level.vhd
+    Info (12022): Found design unit 1: VGA_top_level-structural
+    Info (12023): Found entity 1: VGA_top_level
+Info (12021): Found 2 design units, including 1 entities, in source file testing/vga_sync.vhd
+    Info (12022): Found design unit 1: VGA_SYNC-behavioral
+    Info (12023): Found entity 1: VGA_SYNC
+Info (12021): Found 2 design units, including 0 entities, in source file testing/tank_const.vhd
+    Info (12022): Found design unit 1: tank_const
+    Info (12022): Found design unit 2: tank_const-body
+Info (12021): Found 2 design units, including 1 entities, in source file testing/slow_clock.vhd
+    Info (12022): Found design unit 1: slow_clock-a
+    Info (12023): Found entity 1: slow_clock
+Info (12021): Found 2 design units, including 1 entities, in source file testing/ps2.vhd
+    Info (12022): Found design unit 1: ps2-structural
+    Info (12023): Found entity 1: ps2
+Info (12021): Found 2 design units, including 1 entities, in source file testing/pixelgenerator.vhd
+    Info (12022): Found design unit 1: pixelGenerator-behavioral
+    Info (12023): Found entity 1: pixelGenerator
+Info (12021): Found 2 design units, including 1 entities, in source file testing/oneshot.vhd
+    Info (12022): Found design unit 1: oneshot-dd
+    Info (12023): Found entity 1: oneshot
+Info (12021): Found 2 design units, including 1 entities, in source file testing/leddcd.vhd
+    Info (12022): Found design unit 1: leddcd-data_flow
+    Info (12023): Found entity 1: leddcd
+Info (12021): Found 2 design units, including 1 entities, in source file testing/keyboard.vhd
+    Info (12022): Found design unit 1: keyboard-a
+    Info (12023): Found entity 1: keyboard
+Info (12021): Found 2 design units, including 1 entities, in source file testing/colorrom.vhd
+    Info (12022): Found design unit 1: colorrom-SYN
+    Info (12023): Found entity 1: colorROM
+Info (12127): Elaborating entity "tank" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at tank.vhd(70): object "scan_code" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at tank.vhd(71): object "scan_readyo" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at tank.vhd(72): object "hist3" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at tank.vhd(72): object "hist2" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at tank.vhd(87): used implicit default value for signal "reset" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10492): VHDL Process Statement warning at tank.vhd(205): signal "init" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at tank.vhd(193): inferring latch(es) for signal or variable "T1_pos_y", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at tank.vhd(193): inferring latch(es) for signal or variable "T2_pos_y", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "game:T2_pos_y[0]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[1]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[2]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[3]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[4]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[5]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[6]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[7]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[8]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[9]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[10]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[11]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[12]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[13]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[14]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[15]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[16]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[17]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[18]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[19]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[20]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[21]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[22]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[23]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[24]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[25]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[26]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[27]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[28]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[29]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[30]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T2_pos_y[31]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[0]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[1]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[2]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[3]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[4]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[5]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[6]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[7]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[8]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[9]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[10]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[11]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[12]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[13]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[14]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[15]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[16]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[17]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[18]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[19]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[20]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[21]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[22]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[23]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[24]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[25]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[26]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[27]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[28]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[29]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[30]" at tank.vhd(205)
+Info (10041): Inferred latch for "game:T1_pos_y[31]" at tank.vhd(205)
+Info (12128): Elaborating entity "de2lcd" for hierarchy "de2lcd:LCDscreen"
+Warning (10541): VHDL Signal Declaration warning at de2lcd.vhd(8): used implicit default value for signal "SEC_LED" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at de2lcd.vhd(8): used implicit default value for signal "light" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10631): VHDL Process Statement warning at de2lcd.vhd(45): inferring latch(es) for signal or variable "init", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "init" at de2lcd.vhd(49)
+Info (12128): Elaborating entity "ps2" for hierarchy "ps2:keyboard_0"
+Info (12128): Elaborating entity "leddcd" for hierarchy "ps2:keyboard_0|leddcd:l1"
+Info (12128): Elaborating entity "keyboard" for hierarchy "ps2:keyboard_0|keyboard:u1"
+Info (12128): Elaborating entity "oneshot" for hierarchy "ps2:keyboard_0|oneshot:pulser"
+Info (12128): Elaborating entity "VGA_top_level" for hierarchy "VGA_top_level:vga_0"
+Info (12128): Elaborating entity "pixelGenerator" for hierarchy "VGA_top_level:vga_0|pixelGenerator:videoGen"
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(65): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(65): signal "T1_position_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(65): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(65): signal "T1_position_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(67): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(67): signal "T1_position_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(67): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(67): signal "T1_position_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(69): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(69): signal "T2_position_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(69): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(69): signal "T2_position_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(71): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(71): signal "T2_position_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(71): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(71): signal "T2_position_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(74): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(74): signal "T1_bullet_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(74): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(74): signal "T1_bullet_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(76): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(76): signal "T2_bullet_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(76): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(76): signal "T2_bullet_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(84): signal "tie" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(87): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(87): signal "T1_position_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(87): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(87): signal "T1_position_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(89): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(89): signal "T1_position_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(89): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(89): signal "T1_position_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(91): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(91): signal "T1_bullet_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(91): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(91): signal "T1_bullet_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(96): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(96): signal "T2_position_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(96): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(96): signal "T2_position_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(98): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(98): signal "T2_position_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(98): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(98): signal "T2_position_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(100): signal "pixel_column_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(100): signal "T2_bullet_x" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(100): signal "pixel_row_int" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at pixelGenerator.vhd(100): signal "T2_bullet_y" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "colorROM" for hierarchy "VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component"
+Info (12130): Elaborated megafunction instantiation "VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component"
+Info (12133): Instantiated megafunction "VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component" with the following parameter:
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "colorROM.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "8"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "widthad_a" = "3"
+    Info (12134): Parameter "width_a" = "30"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_pv71.tdf
+    Info (12023): Found entity 1: altsyncram_pv71
+Info (12128): Elaborating entity "altsyncram_pv71" for hierarchy "VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component|altsyncram_pv71:auto_generated"
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_top_level:vga_0|VGA_SYNC:videoSync"
+Info (12128): Elaborating entity "slow_clock" for hierarchy "slow_clock:slow_clock_map"
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "de2lcd:LCDscreen|DATA_BUS[0]~synth"
+    Warning (13010): Node "de2lcd:LCDscreen|DATA_BUS[1]~synth"
+    Warning (13010): Node "de2lcd:LCDscreen|DATA_BUS[2]~synth"
+    Warning (13010): Node "de2lcd:LCDscreen|DATA_BUS[3]~synth"
+    Warning (13010): Node "de2lcd:LCDscreen|DATA_BUS[4]~synth"
+    Warning (13010): Node "de2lcd:LCDscreen|DATA_BUS[5]~synth"
+    Warning (13010): Node "de2lcd:LCDscreen|DATA_BUS[6]~synth"
+    Warning (13010): Node "de2lcd:LCDscreen|DATA_BUS[7]~synth"
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LCD_ON" is stuck at VCC
+    Warning (13410): Pin "SEC_LED" is stuck at GND
+    Warning (13410): Pin "light" is stuck at GND
+    Warning (13410): Pin "LCD_RW" is stuck at GND
+    Warning (13410): Pin "led_seq[35]" is stuck at GND
+    Warning (13410): Pin "led_seq[36]" is stuck at GND
+    Warning (13410): Pin "led_seq[37]" is stuck at GND
+    Warning (13410): Pin "led_seq[38]" is stuck at GND
+    Warning (13410): Pin "led_seq[39]" is stuck at GND
+    Warning (13410): Pin "led_seq[40]" is stuck at GND
+    Warning (13410): Pin "led_seq[41]" is stuck at VCC
+    Warning (13410): Pin "led_seq[49]" is stuck at GND
+    Warning (13410): Pin "led_seq[50]" is stuck at GND
+    Warning (13410): Pin "led_seq[51]" is stuck at GND
+    Warning (13410): Pin "led_seq[52]" is stuck at GND
+    Warning (13410): Pin "led_seq[53]" is stuck at GND
+    Warning (13410): Pin "led_seq[54]" is stuck at GND
+    Warning (13410): Pin "led_seq[55]" is stuck at VCC
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register T2_bullet_x[31] will power up to Low
+    Critical Warning (18010): Register T2_bullet_x[8] will power up to High
+    Critical Warning (18010): Register T2_bullet_x[5] will power up to High
+    Critical Warning (18010): Register T2_bullet_x[4] will power up to High
+    Critical Warning (18010): Register T2_bullet_x[3] will power up to High
+    Critical Warning (18010): Register T2_bullet_x[2] will power up to High
+    Critical Warning (18010): Register T2_bullet_x[1] will power up to High
+    Critical Warning (18010): Register T2_bullet_x[0] will power up to Low
+    Critical Warning (18010): Register T2_bullet_y[31] will power up to Low
+    Critical Warning (18010): Register T2_bullet_y[5] will power up to High
+    Critical Warning (18010): Register T2_bullet_y[3] will power up to High
+    Critical Warning (18010): Register T2_bullet_y[2] will power up to High
+    Critical Warning (18010): Register T1_bullet_x[31] will power up to Low
+    Critical Warning (18010): Register T1_bullet_x[8] will power up to High
+    Critical Warning (18010): Register T1_bullet_x[5] will power up to High
+    Critical Warning (18010): Register T1_bullet_x[4] will power up to High
+    Critical Warning (18010): Register T1_bullet_x[3] will power up to High
+    Critical Warning (18010): Register T1_bullet_x[2] will power up to High
+    Critical Warning (18010): Register T1_bullet_x[1] will power up to High
+    Critical Warning (18010): Register T1_bullet_x[0] will power up to Low
+    Critical Warning (18010): Register T1_bullet_y[31] will power up to Low
+    Critical Warning (18010): Register T1_bullet_y[8] will power up to High
+    Critical Warning (18010): Register T1_bullet_y[7] will power up to High
+    Critical Warning (18010): Register T1_bullet_y[5] will power up to High
+    Critical Warning (18010): Register T1_bullet_y[4] will power up to High
+    Critical Warning (18010): Register T1_bullet_y[1] will power up to High
+    Critical Warning (18010): Register \game:T1_pos_x[31] will power up to Low
+    Critical Warning (18010): Register \game:T1_pos_x[8] will power up to High
+    Critical Warning (18010): Register \game:T1_pos_x[5] will power up to High
+    Critical Warning (18010): Register \game:T1_pos_x[4] will power up to High
+    Critical Warning (18010): Register \game:T2_pos_x[31] will power up to Low
+    Critical Warning (18010): Register \game:T2_pos_x[8] will power up to High
+    Critical Warning (18010): Register \game:T2_pos_x[5] will power up to High
+    Critical Warning (18010): Register \game:T2_pos_x[4] will power up to High
+    Critical Warning (18010): Register \game:T2_score_int[0] will power up to Low
+    Critical Warning (18010): Register \game:T1_score_int[0] will power up to Low
+    Critical Warning (18010): Register \game:T1_score_int[31] will power up to Low
+    Critical Warning (18010): Register \game:T2_score_int[31] will power up to Low
+    Critical Warning (18010): Register slow_clock:slow_clock_map|counter[31] will power up to Low
+    Critical Warning (18010): Register slow_clock:slow_clock_map|counter[0] will power up to Low
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 2184 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 97 output pins
+    Info (21060): Implemented 8 bidirectional pins
+    Info (21061): Implemented 2046 logic cells
+    Info (21064): Implemented 30 RAM segments
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 130 warnings
+    Info: Peak virtual memory: 412 megabytes
+    Info: Processing ended: Sun Mar 16 00:43:15 2014
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:07
+
+

@@ -1,0 +1,205 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow Model Setup 'slow_clock:slow_clock_map|temp_clock'
+Slack : -13.694
+TNS   : -2083.603
+
+Type  : Slow Model Setup 'VGA_top_level:vga_0|VGA_SYNC:videoSync|pixel_clock_int'
+Slack : -9.777
+TNS   : -128.905
+
+Type  : Slow Model Setup 'clk'
+Slack : -5.692
+TNS   : -247.676
+
+Type  : Slow Model Setup 'de2lcd:LCDscreen|CLK_400HZ'
+Slack : -3.236
+TNS   : -60.680
+
+Type  : Slow Model Setup 'ps2:keyboard_0|keyboard:u1|keyboard_clk_filtered'
+Slack : -1.484
+TNS   : -28.165
+
+Type  : Slow Model Setup 'ps2:keyboard_0|keyboard:u1|scan_ready'
+Slack : -0.099
+TNS   : -0.189
+
+Type  : Slow Model Hold 'clk'
+Slack : -2.558
+TNS   : -13.666
+
+Type  : Slow Model Hold 'ps2:keyboard_0|keyboard:u1|keyboard_clk_filtered'
+Slack : -2.041
+TNS   : -2.041
+
+Type  : Slow Model Hold 'ps2:keyboard_0|keyboard:u1|scan_ready'
+Slack : 0.335
+TNS   : 0.000
+
+Type  : Slow Model Hold 'VGA_top_level:vga_0|VGA_SYNC:videoSync|pixel_clock_int'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Hold 'de2lcd:LCDscreen|CLK_400HZ'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Hold 'slow_clock:slow_clock_map|temp_clock'
+Slack : 0.391
+TNS   : 0.000
+
+Type  : Slow Model Recovery 'slow_clock:slow_clock_map|temp_clock'
+Slack : -2.037
+TNS   : -549.969
+
+Type  : Slow Model Recovery 'clk'
+Slack : -1.636
+TNS   : -53.988
+
+Type  : Slow Model Recovery 'ps2:keyboard_0|keyboard:u1|ready_set'
+Slack : -0.671
+TNS   : -0.671
+
+Type  : Slow Model Removal 'ps2:keyboard_0|keyboard:u1|ready_set'
+Slack : 1.441
+TNS   : 0.000
+
+Type  : Slow Model Removal 'clk'
+Slack : 2.406
+TNS   : 0.000
+
+Type  : Slow Model Removal 'slow_clock:slow_clock_map|temp_clock'
+Slack : 2.785
+TNS   : 0.000
+
+Type  : Slow Model Minimum Pulse Width 'VGA_top_level:vga_0|VGA_SYNC:videoSync|pixel_clock_int'
+Slack : -1.423
+TNS   : -53.538
+
+Type  : Slow Model Minimum Pulse Width 'clk'
+Slack : -1.380
+TNS   : -84.380
+
+Type  : Slow Model Minimum Pulse Width 'slow_clock:slow_clock_map|temp_clock'
+Slack : -0.500
+TNS   : -275.000
+
+Type  : Slow Model Minimum Pulse Width 'de2lcd:LCDscreen|CLK_400HZ'
+Slack : -0.500
+TNS   : -61.000
+
+Type  : Slow Model Minimum Pulse Width 'ps2:keyboard_0|keyboard:u1|keyboard_clk_filtered'
+Slack : -0.500
+TNS   : -23.000
+
+Type  : Slow Model Minimum Pulse Width 'ps2:keyboard_0|keyboard:u1|scan_ready'
+Slack : -0.500
+TNS   : -16.000
+
+Type  : Slow Model Minimum Pulse Width 'ps2:keyboard_0|keyboard:u1|ready_set'
+Slack : -0.500
+TNS   : -1.000
+
+Type  : Fast Model Setup 'slow_clock:slow_clock_map|temp_clock'
+Slack : -5.949
+TNS   : -860.049
+
+Type  : Fast Model Setup 'VGA_top_level:vga_0|VGA_SYNC:videoSync|pixel_clock_int'
+Slack : -4.200
+TNS   : -37.382
+
+Type  : Fast Model Setup 'clk'
+Slack : -2.060
+TNS   : -72.312
+
+Type  : Fast Model Setup 'de2lcd:LCDscreen|CLK_400HZ'
+Slack : -1.283
+TNS   : -8.963
+
+Type  : Fast Model Setup 'ps2:keyboard_0|keyboard:u1|keyboard_clk_filtered'
+Slack : -0.188
+TNS   : -3.151
+
+Type  : Fast Model Setup 'ps2:keyboard_0|keyboard:u1|scan_ready'
+Slack : 0.460
+TNS   : 0.000
+
+Type  : Fast Model Hold 'clk'
+Slack : -1.598
+TNS   : -8.944
+
+Type  : Fast Model Hold 'ps2:keyboard_0|keyboard:u1|keyboard_clk_filtered'
+Slack : -1.284
+TNS   : -1.284
+
+Type  : Fast Model Hold 'ps2:keyboard_0|keyboard:u1|scan_ready'
+Slack : 0.156
+TNS   : 0.000
+
+Type  : Fast Model Hold 'VGA_top_level:vga_0|VGA_SYNC:videoSync|pixel_clock_int'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Hold 'de2lcd:LCDscreen|CLK_400HZ'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Hold 'slow_clock:slow_clock_map|temp_clock'
+Slack : 0.215
+TNS   : 0.000
+
+Type  : Fast Model Recovery 'slow_clock:slow_clock_map|temp_clock'
+Slack : -1.094
+TNS   : -294.644
+
+Type  : Fast Model Recovery 'clk'
+Slack : -0.602
+TNS   : -19.866
+
+Type  : Fast Model Recovery 'ps2:keyboard_0|keyboard:u1|ready_set'
+Slack : -0.184
+TNS   : -0.184
+
+Type  : Fast Model Removal 'ps2:keyboard_0|keyboard:u1|ready_set'
+Slack : 1.064
+TNS   : 0.000
+
+Type  : Fast Model Removal 'clk'
+Slack : 1.482
+TNS   : 0.000
+
+Type  : Fast Model Removal 'slow_clock:slow_clock_map|temp_clock'
+Slack : 1.955
+TNS   : 0.000
+
+Type  : Fast Model Minimum Pulse Width 'VGA_top_level:vga_0|VGA_SYNC:videoSync|pixel_clock_int'
+Slack : -1.423
+TNS   : -53.538
+
+Type  : Fast Model Minimum Pulse Width 'clk'
+Slack : -1.380
+TNS   : -84.380
+
+Type  : Fast Model Minimum Pulse Width 'slow_clock:slow_clock_map|temp_clock'
+Slack : -0.500
+TNS   : -275.000
+
+Type  : Fast Model Minimum Pulse Width 'de2lcd:LCDscreen|CLK_400HZ'
+Slack : -0.500
+TNS   : -61.000
+
+Type  : Fast Model Minimum Pulse Width 'ps2:keyboard_0|keyboard:u1|keyboard_clk_filtered'
+Slack : -0.500
+TNS   : -23.000
+
+Type  : Fast Model Minimum Pulse Width 'ps2:keyboard_0|keyboard:u1|scan_ready'
+Slack : -0.500
+TNS   : -16.000
+
+Type  : Fast Model Minimum Pulse Width 'ps2:keyboard_0|keyboard:u1|ready_set'
+Slack : -0.500
+TNS   : -1.000
+
+------------------------------------------------------------

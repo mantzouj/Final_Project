@@ -1,14 +1,4 @@
-C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/ps2.vhd {1 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/ps2.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package std_logic_arith
--- Loading package STD_LOGIC_UNSIGNED
--- Compiling entity ps2
--- Compiling architecture structural of ps2
-
-} {} {}} C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/keyboard.vhd {1 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/keyboard.vhd
+C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/keyboard.vhd {1 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/keyboard.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -17,6 +7,16 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity keyboard
 -- Compiling architecture a of keyboard
+
+} {} {}} C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/ps2.vhd {1 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/ps2.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity ps2
+-- Compiling architecture structural of ps2
 
 } {} {}} C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/tank.vhd {0 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/tank.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
@@ -36,7 +36,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 
 ** Error: C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/tank.vhd(59): near "CASE": syntax error
 
-} {9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0} {}} C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/oneshot.vhd {1 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/oneshot.vhd
+} {9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0} {}} C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/leddcd.vhd {1 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/leddcd.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity leddcd
+-- Compiling architecture data_flow of leddcd
+
+} {} {}} C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/oneshot.vhd {1 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/oneshot.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -45,13 +53,5 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STD_LOGIC_UNSIGNED
 -- Compiling entity oneshot
 -- Compiling architecture dd of oneshot
-
-} {} {}} C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/leddcd.vhd {1 {vcom -work work -2002 -explicit C:/Users/mantzouj/Documents/GitHub/Final_Project/testing/leddcd.vhd
-Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity leddcd
--- Compiling architecture data_flow of leddcd
 
 } {} {}}

@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="tank">
+		<CBX_INST_ENTRY INSTANCE_NAME="|tank|VGA_top_level:vga_0|pixelGenerator:videoGen|colorROM:colors|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_pv71.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
